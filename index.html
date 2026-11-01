@@ -126,6 +126,17 @@
       transition: all .25s;
     }
     .project-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 12px 40px rgba(139, 92, 246, 0.12); }
+    .project-card.featured {
+      position: relative;
+      border: 1px solid transparent;
+      background: linear-gradient(var(--card), var(--card)) padding-box, var(--gradient) border-box;
+    }
+    .featured-badge {
+      position: absolute; top: -11px; right: 16px;
+      background: var(--gradient); color: #fff;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; font-weight: 600;
+      padding: 3px 12px; border-radius: 999px; letter-spacing: 0.08em;
+    }
     .project-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
     .project-name { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 1.05rem; }
     .project-link { color: var(--text-dim); transition: color .2s; font-size: 1.2rem; }
@@ -216,6 +227,7 @@
           <div class="info-row"><span class="k" data-i18n="info.role">Função</span><span class="v">Software Developer</span></div>
           <div class="info-row"><span class="k" data-i18n="info.loc">Local</span><span class="v">Santa Catarina, BR</span></div>
           <div class="info-row"><span class="k" data-i18n="info.focus">Foco</span><span class="v">Back-end · Linux</span></div>
+          <div class="info-row"><span class="k" data-i18n="info.study">Estudando</span><span class="v">AI Product Builder</span></div>
           <div class="info-row"><span class="k" data-i18n="info.repos">Repos públicos</span><span class="v">37+</span></div>
           <div class="info-row"><span class="k">Email</span><span class="v">leoomatheus@outlook.com.br</span></div>
         </div>
@@ -228,6 +240,15 @@
       <p class="section-label" data-i18n="projects.label">Portfólio</p>
       <h2 class="section-title" data-i18n="projects.title">Projetos em destaque</h2>
       <div class="projects-grid">
+        <div class="project-card featured">
+          <span class="featured-badge" data-i18n="featured">DESTAQUE</span>
+          <div class="project-head">
+            <span class="project-name">TribunalCNJ</span>
+            <a href="https://github.com/LeooMatheuss/TribunalCNJ" target="_blank" rel="noopener" class="project-link">↗</a>
+          </div>
+          <p class="project-desc" data-i18n="p0.desc">RPA de web scraping que extrai comunicações processuais da plataforma CNJ/PJe (comunica.pje.jus.br) com automação de navegador.</p>
+          <div class="tags"><span class="tag">JavaScript</span><span class="tag">WebdriverIO</span><span class="tag">RPA</span></div>
+        </div>
         <div class="project-card">
           <div class="project-head">
             <span class="project-name">bastiaos</span>
@@ -297,6 +318,10 @@
         <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"><span>Linux</span></div>
         <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"><span>Git</span></div>
         <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"><span>HTML/CSS</span></div>
+        <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"><span>Docker</span></div>
+        <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes"><span>Kubernetes</span></div>
+        <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"><span>PostgreSQL</span></div>
+        <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" alt="GitHub Actions"><span>CI/CD</span></div>
       </div>
     </div>
   </section>
@@ -328,13 +353,15 @@
         'nav.about': 'Sobre', 'nav.projects': 'Projetos', 'nav.stack': 'Stack', 'nav.contact': 'Contato',
         'hero.tag': '// desenvolvedor de software',
         'hero.title': 'Olá, eu sou <span class="grad">Léo Matheus</span>',
-        'hero.sub': 'Desenvolvedor focado em back-end, sistemas Linux e automação — construindo desde APIs REST até uma distribuição Linux completa.',
+        'hero.sub': 'Desenvolvedor focado em back-end, sistemas Linux e automação — construindo desde APIs REST até uma distribuição Linux completa. Estudo focado para me tornar AI Product Builder, explorando as mais diversas IAs.',
         'hero.cta1': 'Ver projetos',
         'about.label': 'Sobre mim', 'about.title': 'Quem sou eu',
         'about.p1': 'Sou desenvolvedor de software de <strong>Santa Catarina, Brasil</strong>, com foco em <strong>back-end, sistemas Linux e automação</strong>. Gosto de entender as coisas a fundo — por isso meus projetos vão de APIs REST com arquitetura limpa até o <strong>BastiaOS</strong>, uma distribuição Linux imutável e reproduzível construída do zero.',
-        'about.p2': 'Também trabalho com web scraping, RPA e análise de dados, e mantenho uma rotina constante de resolução de problemas de algoritmos no Beecrowd.',
-        'info.role': 'Função', 'info.loc': 'Local', 'info.focus': 'Foco', 'info.repos': 'Repos públicos',
+        'about.p2': 'Também trabalho com web scraping, RPA, containers (Docker/Kubernetes) e análise de dados. Mantenho rotina diária de resolução de algoritmos no Beecrowd e estudo focado em AI Product Building com as mais diversas inteligências artificiais.',
+        'info.role': 'Função', 'info.loc': 'Local', 'info.focus': 'Foco', 'info.study': 'Estudando', 'info.repos': 'Repos públicos',
         'projects.label': 'Portfólio', 'projects.title': 'Projetos em destaque',
+        'featured': 'DESTAQUE',
+        'p0.desc': 'RPA de web scraping que extrai comunicações processuais da plataforma CNJ/PJe (comunica.pje.jus.br) com automação de navegador.',
         'p1.desc': 'Distribuição Linux leve, modular e reproduzível — imutável e segura por padrão, construída do zero.',
         'p2.desc': 'Plataforma open-source de análise de documentos — leitura, extração, sumarização e insights inteligentes de PDFs.',
         'p3.desc': 'Assistente inteligente de compras (Smart Shopping Assistant).',
@@ -351,13 +378,15 @@
         'nav.about': 'About', 'nav.projects': 'Projects', 'nav.stack': 'Stack', 'nav.contact': 'Contact',
         'hero.tag': '// software developer',
         'hero.title': 'Hi, I\'m <span class="grad">Léo Matheus</span>',
-        'hero.sub': 'Developer focused on back-end, Linux systems and automation — building everything from REST APIs to a complete Linux distribution.',
+        'hero.sub': 'Developer focused on back-end, Linux systems and automation — building everything from REST APIs to a complete Linux distribution. Focused study to become an AI Product Builder, exploring the most diverse AI tools.',
         'hero.cta1': 'View projects',
         'about.label': 'About me', 'about.title': 'Who I am',
         'about.p1': 'I\'m a software developer from <strong>Santa Catarina, Brazil</strong>, focused on <strong>back-end, Linux systems and automation</strong>. I like understanding things deeply — that\'s why my projects range from clean-architecture REST APIs to <strong>BastiaOS</strong>, an immutable and reproducible Linux distribution built from scratch.',
-        'about.p2': 'I also work with web scraping, RPA and data analysis, and keep a steady routine solving algorithm problems on Beecrowd.',
-        'info.role': 'Role', 'info.loc': 'Location', 'info.focus': 'Focus', 'info.repos': 'Public repos',
+        'about.p2': 'I also work with web scraping, RPA, containers (Docker/Kubernetes) and data analysis. I keep a daily routine solving algorithms on Beecrowd and focused study on AI Product Building with the most diverse AI technologies.',
+        'info.role': 'Role', 'info.loc': 'Location', 'info.focus': 'Focus', 'info.study': 'Studying', 'info.repos': 'Public repos',
         'projects.label': 'Portfolio', 'projects.title': 'Featured projects',
+        'featured': 'FEATURED',
+        'p0.desc': 'Web scraping RPA that extracts judicial publications from Brazil\'s CNJ/PJe platform (comunica.pje.jus.br) using browser automation.',
         'p1.desc': 'Lightweight, modular and reproducible Linux distribution — immutable and secure by default, built from scratch.',
         'p2.desc': 'Open-source document analytics platform — reading, extracting, summarizing and providing intelligent insights from PDFs.',
         'p3.desc': 'Smart Shopping Assistant.',
