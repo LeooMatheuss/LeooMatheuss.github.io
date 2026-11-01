@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Léo Matheus — Software Developer</title>
+  <meta name="description" content="Portfolio of Léo Matheus — software developer focused on back-end, Linux systems and automation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0e17;
+      --bg-soft: #111827;
+      --card: #151c2c;
+      --border: #243047;
+      --text: #e5e9f0;
+      --text-dim: #94a3b8;
+      --accent: #8b5cf6;
+      --accent-2: #38bdf8;
+      --gradient: linear-gradient(135deg, #8b5cf6, #38bdf8);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10, 14, 23, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 16px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 1.1rem; }
+    .logo span { background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { color: var(--text-dim); font-size: 0.9rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+    .lang-toggle {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: 600;
+      background: transparent; color: var(--text-dim);
+      border: 1px solid var(--border); border-radius: 8px;
+      padding: 6px 12px; cursor: pointer; transition: all .2s;
+    }
+    .lang-toggle:hover { border-color: var(--accent); color: var(--text); }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      position: relative; padding-top: 80px;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -20%; right: -10%;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.15), transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: -10%; left: -10%;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.1), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+      color: var(--accent-2); margin-bottom: 16px;
+    }
+    .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
+    .hero h1 .grad { background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero-sub {
+      font-size: 1.15rem; color: var(--text-dim); max-width: 560px;
+      margin: 24px 0 36px;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: 10px;
+      font-weight: 600; font-size: 0.95rem; transition: all .2s;
+      border: 1px solid transparent;
+    }
+    .btn-primary { background: var(--gradient); color: #fff; }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+    .btn-ghost { border-color: var(--border); color: var(--text); background: var(--card); }
+    .btn-ghost:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    /* Sections */
+    section { padding: 100px 0; }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+      color: var(--accent-2); text-transform: uppercase; letter-spacing: 0.15em;
+      margin-bottom: 8px;
+    }
+    .section-title { font-size: 2rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 40px; }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: start; }
+    .about-text p { color: var(--text-dim); margin-bottom: 16px; }
+    .about-text strong { color: var(--text); }
+    .info-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px;
+    }
+    .info-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+    .info-row:last-child { border-bottom: none; }
+    .info-row .k { color: var(--text-dim); }
+    .info-row .v { font-weight: 600; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+
+    /* Projects */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+    .project-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px;
+      display: flex; flex-direction: column;
+      transition: all .25s;
+    }
+    .project-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 12px 40px rgba(139, 92, 246, 0.12); }
+    .project-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .project-name { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 1.05rem; }
+    .project-link { color: var(--text-dim); transition: color .2s; font-size: 1.2rem; }
+    .project-card:hover .project-link { color: var(--accent-2); }
+    .project-desc { color: var(--text-dim); font-size: 0.92rem; flex: 1; margin-bottom: 20px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+      padding: 4px 10px; border-radius: 999px;
+      background: rgba(139, 92, 246, 0.1); color: var(--accent);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+    }
+
+    /* Stack */
+    .stack-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+    .stack-item {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px 16px;
+      text-align: center; transition: all .2s;
+    }
+    .stack-item:hover { border-color: var(--accent-2); transform: translateY(-3px); }
+    .stack-item img { height: 36px; margin-bottom: 10px; }
+    .stack-item span { display: block; font-size: 0.82rem; color: var(--text-dim); font-weight: 500; }
+
+    /* Contact */
+    .contact-box {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 56px 40px; text-align: center;
+    }
+    .contact-box h2 { font-size: 1.8rem; margin-bottom: 12px; }
+    .contact-box p { color: var(--text-dim); max-width: 480px; margin: 0 auto 32px; }
+    .contact-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    footer {
+      border-top: 1px solid var(--border); padding: 32px 0;
+      text-align: center; color: var(--text-dim); font-size: 0.85rem;
+    }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .nav-links a:not(.lang-toggle) { display: none; }
+      section { padding: 64px 0; }
+      .contact-box { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="logo">&lt;leo<span>.dev</span> /&gt;</a>
+      <div class="nav-links">
+        <a href="#about" data-i18n="nav.about">Sobre</a>
+        <a href="#projects" data-i18n="nav.projects">Projetos</a>
+        <a href="#stack" data-i18n="nav.stack">Stack</a>
+        <a href="#contact" data-i18n="nav.contact">Contato</a>
+        <button class="lang-toggle" id="langToggle">EN</button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <p class="hero-tag" data-i18n="hero.tag">// desenvolvedor de software</p>
+      <h1 data-i18n-html="hero.title">Olá, eu sou <span class="grad">Léo Matheus</span></h1>
+      <p class="hero-sub" data-i18n="hero.sub">
+        Desenvolvedor focado em back-end, sistemas Linux e automação — construindo desde APIs REST até uma distribuição Linux completa.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-primary" data-i18n="hero.cta1">Ver projetos</a>
+        <a href="https://github.com/LeooMatheuss" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container reveal">
+      <p class="section-label" data-i18n="about.label">Sobre mim</p>
+      <h2 class="section-title" data-i18n="about.title">Quem sou eu</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p data-i18n-html="about.p1">Sou desenvolvedor de software de <strong>Santa Catarina, Brasil</strong>, com foco em <strong>back-end, sistemas Linux e automação</strong>. Gosto de entender as coisas a fundo — por isso meus projetos vão de APIs REST com arquitetura limpa até o <strong>BastiaOS</strong>, uma distribuição Linux imutável e reproduzível construída do zero.</p>
+          <p data-i18n="about.p2">Também trabalho com web scraping, RPA e análise de dados, e mantenho uma rotina constante de resolução de problemas de algoritmos no Beecrowd.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-row"><span class="k" data-i18n="info.role">Função</span><span class="v">Software Developer</span></div>
+          <div class="info-row"><span class="k" data-i18n="info.loc">Local</span><span class="v">Santa Catarina, BR</span></div>
+          <div class="info-row"><span class="k" data-i18n="info.focus">Foco</span><span class="v">Back-end · Linux</span></div>
+          <div class="info-row"><span class="k" data-i18n="info.repos">Repos públicos</span><span class="v">37+</span></div>
+          <div class="info-row"><span class="k">Email</span><span class="v">leoomatheus@outlook.com.br</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container reveal">
+      <p class="section-label" data-i18n="projects.label">Portfólio</p>
+      <h2 class="section-title" data-i18n="projects.title">Projetos em destaque</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-head">
+            <span class="project-name">bastiaos</span>
+            <a href="https://github.com/LeooMatheuss/bastiaos" target="_blank" rel="noopener" class="project-link">↗</a>
+          </div>
+          <p class="project-desc" data-i18n="p1.desc">Distribuição Linux leve, modular e reproduzível — imutável e segura por padrão, construída do zero.</p>
+          <div class="tags"><span class="tag">Shell</span><span class="tag">Linux</span></div>
+        </div>
+        <div class="project-card">
+          <div class="project-head">
+            <span class="project-name">PaperLens</span>
+            <a href="https://github.com/LeooMatheuss/PaperLens" target="_blank" rel="noopener" class="project-link">↗</a>
+          </div>
+          <p class="project-desc" data-i18n="p2.desc">Plataforma open-source de análise de documentos — leitura, extração, sumarização e insights inteligentes de PDFs.</p>
+          <div class="tags"><span class="tag">TypeScript</span><span class="tag">AI/NLP</span></div>
+        </div>
+        <div class="project-card">
+          <div class="project-head">
+            <span class="project-name">ListaGO</span>
+            <a href="https://github.com/LeooMatheuss/ListaGO" target="_blank" rel="noopener" class="project-link">↗</a>
+          </div>
+          <p class="project-desc" data-i18n="p3.desc">Assistente inteligente de compras (Smart Shopping Assistant).</p>
+          <div class="tags"><span class="tag">C++</span></div>
+        </div>
+        <div class="project-card">
+          <div class="project-head">
+            <span class="project-name">API-REST-NodeJs</span>
+            <a href="https://github.com/LeooMatheuss/API-REST-NodeJs" target="_blank" rel="noopener" class="project-link">↗</a>
+          </div>
+          <p class="project-desc" data-i18n="p4.desc">API REST pronta para produção com arquitetura limpa, autenticação, validação, logs e estrutura modular.</p>
+          <div class="tags"><span class="tag">Node.js</span><span class="tag">JavaScript</span></div>
+        </div>
+        <div class="project-card">
+          <div class="project-head">
+            <span class="project-name">BastiaOS-Site</span>
+            <a href="https://github.com/LeooMatheuss/BastiaOS-Site" target="_blank" rel="noopener" class="project-link">↗</a>
+          </div>
+          <p class="project-desc" data-i18n="p5.desc">Site oficial do BastiaOS — uma distribuição Linux imutável, segura por padrão e reproduzível.</p>
+          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
+        </div>
+        <div class="project-card">
+          <div class="project-head">
+            <span class="project-name">beecrowd-all-problems</span>
+            <a href="https://github.com/LeooMatheuss/beecrowd-all-problems" target="_blank" rel="noopener" class="project-link">↗</a>
+          </div>
+          <p class="project-desc" data-i18n="p6.desc">Soluções de problemas Beecrowd/URI com foco em pensamento algorítmico e disciplina de programação.</p>
+          <div class="tags"><span class="tag">Algorithms</span><span class="tag">Problem Solving</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="container reveal">
+      <p class="section-label" data-i18n="stack.label">Tecnologias</p>
+      <h2 class="section-title" data-i18n="stack.title">Tech Stack</h2>
+      <div class="stack-grid">
+        <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"><span>JavaScript</span></div>
+        <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript"><span>TypeScript</span></div>
+        <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"><span>Node.js</span></div>
+        <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"><span>Python</span></div>
+        <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C"><span>C</span></div>
+        <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++"><span>C++</span></div>
+        <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="Shell"><span>Shell</span></div>
+        <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"><span>React</span></div>
+        <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB"><span>MongoDB</span></div>
+        <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"><span>Linux</span></div>
+        <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"><span>Git</span></div>
+        <div class="stack-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"><span>HTML/CSS</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container reveal">
+      <div class="contact-box">
+        <p class="section-label" data-i18n="contact.label">Contato</p>
+        <h2 data-i18n="contact.title">Vamos conversar?</h2>
+        <p data-i18n="contact.sub">Estou aberto a oportunidades, colaborações em projetos open-source ou apenas um bom papo sobre tecnologia.</p>
+        <div class="contact-btns">
+          <a href="https://www.linkedin.com/in/leonardo-matheus-da-silva-1126b8a0/" target="_blank" rel="noopener" class="btn btn-primary">LinkedIn ↗</a>
+          <a href="mailto:leoomatheus@outlook.com.br" class="btn btn-ghost" data-i18n="contact.mail">Enviar e-mail</a>
+          <a href="https://github.com/LeooMatheuss" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Léo Matheus · <span data-i18n="footer.built">Santa Catarina, Brasil</span></p>
+    </div>
+  </footer>
+
+  <script>
+    const i18n = {
+      pt: {
+        'nav.about': 'Sobre', 'nav.projects': 'Projetos', 'nav.stack': 'Stack', 'nav.contact': 'Contato',
+        'hero.tag': '// desenvolvedor de software',
+        'hero.title': 'Olá, eu sou <span class="grad">Léo Matheus</span>',
+        'hero.sub': 'Desenvolvedor focado em back-end, sistemas Linux e automação — construindo desde APIs REST até uma distribuição Linux completa.',
+        'hero.cta1': 'Ver projetos',
+        'about.label': 'Sobre mim', 'about.title': 'Quem sou eu',
+        'about.p1': 'Sou desenvolvedor de software de <strong>Santa Catarina, Brasil</strong>, com foco em <strong>back-end, sistemas Linux e automação</strong>. Gosto de entender as coisas a fundo — por isso meus projetos vão de APIs REST com arquitetura limpa até o <strong>BastiaOS</strong>, uma distribuição Linux imutável e reproduzível construída do zero.',
+        'about.p2': 'Também trabalho com web scraping, RPA e análise de dados, e mantenho uma rotina constante de resolução de problemas de algoritmos no Beecrowd.',
+        'info.role': 'Função', 'info.loc': 'Local', 'info.focus': 'Foco', 'info.repos': 'Repos públicos',
+        'projects.label': 'Portfólio', 'projects.title': 'Projetos em destaque',
+        'p1.desc': 'Distribuição Linux leve, modular e reproduzível — imutável e segura por padrão, construída do zero.',
+        'p2.desc': 'Plataforma open-source de análise de documentos — leitura, extração, sumarização e insights inteligentes de PDFs.',
+        'p3.desc': 'Assistente inteligente de compras (Smart Shopping Assistant).',
+        'p4.desc': 'API REST pronta para produção com arquitetura limpa, autenticação, validação, logs e estrutura modular.',
+        'p5.desc': 'Site oficial do BastiaOS — uma distribuição Linux imutável, segura por padrão e reproduzível.',
+        'p6.desc': 'Soluções de problemas Beecrowd/URI com foco em pensamento algorítmico e disciplina de programação.',
+        'stack.label': 'Tecnologias', 'stack.title': 'Tech Stack',
+        'contact.label': 'Contato', 'contact.title': 'Vamos conversar?',
+        'contact.sub': 'Estou aberto a oportunidades, colaborações em projetos open-source ou apenas um bom papo sobre tecnologia.',
+        'contact.mail': 'Enviar e-mail',
+        'footer.built': 'Santa Catarina, Brasil'
+      },
+      en: {
+        'nav.about': 'About', 'nav.projects': 'Projects', 'nav.stack': 'Stack', 'nav.contact': 'Contact',
+        'hero.tag': '// software developer',
+        'hero.title': 'Hi, I\'m <span class="grad">Léo Matheus</span>',
+        'hero.sub': 'Developer focused on back-end, Linux systems and automation — building everything from REST APIs to a complete Linux distribution.',
+        'hero.cta1': 'View projects',
+        'about.label': 'About me', 'about.title': 'Who I am',
+        'about.p1': 'I\'m a software developer from <strong>Santa Catarina, Brazil</strong>, focused on <strong>back-end, Linux systems and automation</strong>. I like understanding things deeply — that\'s why my projects range from clean-architecture REST APIs to <strong>BastiaOS</strong>, an immutable and reproducible Linux distribution built from scratch.',
+        'about.p2': 'I also work with web scraping, RPA and data analysis, and keep a steady routine solving algorithm problems on Beecrowd.',
+        'info.role': 'Role', 'info.loc': 'Location', 'info.focus': 'Focus', 'info.repos': 'Public repos',
+        'projects.label': 'Portfolio', 'projects.title': 'Featured projects',
+        'p1.desc': 'Lightweight, modular and reproducible Linux distribution — immutable and secure by default, built from scratch.',
+        'p2.desc': 'Open-source document analytics platform — reading, extracting, summarizing and providing intelligent insights from PDFs.',
+        'p3.desc': 'Smart Shopping Assistant.',
+        'p4.desc': 'Production-ready REST API with clean architecture, authentication, validation, logging and modular structure.',
+        'p5.desc': 'Official website for BastiaOS — an immutable, secure-by-default and reproducible Linux distribution.',
+        'p6.desc': 'Beecrowd/URI problem solutions focused on algorithmic thinking and programming discipline.',
+        'stack.label': 'Technologies', 'stack.title': 'Tech Stack',
+        'contact.label': 'Contact', 'contact.title': 'Let\'s talk?',
+        'contact.sub': 'I\'m open to opportunities, open-source collaborations or just a good conversation about technology.',
+        'contact.mail': 'Send email',
+        'footer.built': 'Santa Catarina, Brazil'
+      }
+    };
+
+    let lang = localStorage.getItem('lang') || 'pt';
+    const toggle = document.getElementById('langToggle');
+
+    function applyLang(l) {
+      document.documentElement.lang = l === 'pt' ? 'pt-BR' : 'en';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[l][key]) el.textContent = i18n[l][key];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (i18n[l][key]) el.innerHTML = i18n[l][key];
+      });
+      toggle.textContent = l === 'pt' ? 'EN' : 'PT';
+      localStorage.setItem('lang', l);
+    }
+
+    toggle.addEventListener('click', () => {
+      lang = lang === 'pt' ? 'en' : 'pt';
+      applyLang(lang);
+    });
+    applyLang(lang);
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
