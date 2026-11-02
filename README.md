@@ -30,6 +30,7 @@ Portfólio de página única que apresenta meu perfil, meus principais projetos 
 - **Hero 3D interativo**: um núcleo de energia com shader GLSL próprio (deformação por *simplex noise* e brilho *fresnel*), malha em wireframe, anéis orbitais e um campo de partículas. A cena reage ao movimento do mouse (parallax) e ao scroll.
 - **Spotlight do BastiaOS**: seção dedicada à minha distribuição Linux, com a arquitetura em camadas representada em uma **visualização 3D explodida** (Toolchain → Kernel → Root FS → Services → Desktop → Apps). Ela tem rotação por arraste, expansão das camadas no hover e uma animação de "boot verificado".
 - **Cards de projeto com tilt 3D**: inclinação e reflexo de luz que acompanham o cursor. Os projetos principais (BastiaOS e CNJ Publications Intelligence) aparecem em destaque.
+- **Mini cenas 3D nos 4 primeiros cards**: cada card tem um canvas WebGL de fundo com um efeito próprio — pilha de camadas (BastiaOS), hub com órbita (CNJ), funil de partículas (MediaGrabber) e forma de onda (SubtitleStudio) — que reage ao hover. Os 4 cards são clicáveis e abrem o repositório.
 - **Bilíngue (PT/EN)**: troca de idioma instantânea, com a preferência salva no `localStorage`.
 - **Responsivo**: layout adaptado para desktop, tablet e celular.
 
