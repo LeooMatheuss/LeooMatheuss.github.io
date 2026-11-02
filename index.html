@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Léo Matheus · Software Developer</title>
   <meta name="description" content="Portfolio of Léo Matheus, software developer focused on back-end, Linux systems and automation.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%238b5cf6'/%3E%3Cstop offset='1' stop-color='%2338bdf8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%230a0e17'/%3E%3Cpath d='M16 5l9 5v12l-9 5-9-5V10z' fill='none' stroke='url(%23g)' stroke-width='2.5'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -59,19 +60,7 @@
     /* Hero */
     .hero {
       min-height: 100vh; display: flex; align-items: center;
-      position: relative; padding-top: 80px;
-    }
-    .hero::before {
-      content: ''; position: absolute; top: -20%; right: -10%;
-      width: 600px; height: 600px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(139, 92, 246, 0.15), transparent 70%);
-      pointer-events: none;
-    }
-    .hero::after {
-      content: ''; position: absolute; bottom: -10%; left: -10%;
-      width: 500px; height: 500px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(56, 189, 248, 0.1), transparent 70%);
-      pointer-events: none;
+      position: relative; padding-top: 80px; overflow: hidden;
     }
     .hero-tag {
       font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
@@ -175,6 +164,95 @@
       text-align: center; color: var(--text-dim); font-size: 0.85rem;
     }
 
+    /* 3D hero */
+    #hero3d { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; display: block; }
+    .hero .container { position: relative; z-index: 1; pointer-events: none; width: 100%; }
+    .hero-content { max-width: 600px; }
+    .hero .container a, .hero .container button { pointer-events: auto; }
+    .hero-shade {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background: linear-gradient(90deg, rgba(10,14,23,0.85) 0%, rgba(10,14,23,0.35) 45%, transparent 70%),
+                  linear-gradient(0deg, var(--bg) 0%, transparent 25%);
+    }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--text);
+      padding: 6px 14px 6px 6px; border-radius: 999px; margin-bottom: 22px;
+      background: rgba(21, 28, 44, 0.7); border: 1px solid var(--border);
+      backdrop-filter: blur(8px); transition: border-color .2s, transform .2s;
+    }
+    .hero-pill:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .hero-pill b {
+      background: var(--gradient); color: #fff; font-weight: 600;
+      padding: 2px 10px; border-radius: 999px; font-size: 0.7rem; letter-spacing: 0.06em;
+    }
+    .scroll-cue {
+      position: absolute; left: 50%; bottom: 28px; z-index: 1; transform: translateX(-50%);
+      width: 24px; height: 38px; border: 2px solid var(--border); border-radius: 14px;
+    }
+    .scroll-cue::after {
+      content: ''; position: absolute; left: 50%; top: 7px; width: 4px; height: 8px; margin-left: -2px;
+      border-radius: 2px; background: var(--accent-2); animation: cue 1.8s ease-in-out infinite;
+    }
+    @keyframes cue { 0% { opacity: 0; transform: translateY(0); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateY(14px); } }
+
+    /* BastiaOS spotlight */
+    @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+    .spot-card {
+      position: relative; border-radius: 24px; padding: 2px;
+      background: conic-gradient(from var(--angle), #8b5cf6, #38bdf8, #22d3ee, #a855f7, #8b5cf6);
+      animation: spin-border 6s linear infinite;
+      box-shadow: 0 30px 120px rgba(139, 92, 246, 0.18), 0 0 60px rgba(56, 189, 248, 0.08);
+    }
+    @keyframes spin-border { to { --angle: 360deg; } }
+    .spot-inner {
+      position: relative; border-radius: 22px; overflow: hidden;
+      background: radial-gradient(ellipse at 80% 50%, rgba(139, 92, 246, 0.14), transparent 60%), #0d1322;
+      display: grid; grid-template-columns: 1fr 1.05fr; min-height: 520px;
+    }
+    .spot-card .featured-badge { top: -11px; right: 28px; z-index: 3; font-size: 0.72rem; padding: 4px 14px; }
+    .spot-text { padding: 48px 8px 48px 48px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2; }
+    .spot-logo { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2.2rem, 4.5vw, 3.2rem); letter-spacing: -0.03em; line-height: 1; }
+    .spot-logo span { background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .spot-version { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--accent-2); margin: 10px 0 18px; }
+    .spot-tagline { font-size: 1.25rem; font-weight: 700; margin-bottom: 10px; }
+    .spot-desc { color: var(--text-dim); margin-bottom: 24px; font-size: 0.97rem; }
+    .spot-features { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+    .spot-features li {
+      display: flex; align-items: center; gap: 10px; font-size: 0.86rem; font-weight: 500;
+      padding: 10px 12px; border-radius: 10px; background: rgba(21, 28, 44, 0.8); border: 1px solid var(--border);
+    }
+    .spot-features li i {
+      font-style: normal; width: 28px; height: 28px; flex: none; display: grid; place-items: center;
+      border-radius: 8px; background: rgba(139, 92, 246, 0.15); color: var(--accent-2);
+    }
+    .spot-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 26px; }
+    .spot-visual { position: relative; min-height: 420px; cursor: grab; }
+    .spot-visual:active { cursor: grabbing; }
+    #bastia3d { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: pan-y; }
+    .spot-hint {
+      position: absolute; right: 20px; bottom: 16px; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; color: var(--text-dim); pointer-events: none;
+    }
+    .spot-fallback { display: none; }
+    .no-webgl #hero3d, .no-webgl #bastia3d, .no-webgl .spot-hint { display: none; }
+    .no-webgl .spot-fallback {
+      display: flex; align-items: center; justify-content: center; height: 100%;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim); white-space: pre; padding: 24px;
+    }
+
+    /* Card tilt */
+    .projects-grid { perspective: 1200px; }
+    .project-card { transform-style: preserve-3d; will-change: transform; position: relative; }
+    .project-card::after {
+      content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0;
+      background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255,255,255,0.10), transparent 55%);
+      transition: opacity .25s;
+    }
+    .project-card:hover::after { opacity: 1; }
+    .project-card.tilting { transition: border-color .25s, box-shadow .25s; }
+    .project-site { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--accent-2); margin-left: 12px; }
+
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
     .reveal.visible { opacity: 1; transform: none; }
 
@@ -183,6 +261,15 @@
       .nav-links a:not(.lang-toggle) { display: none; }
       section { padding: 64px 0; }
       .contact-box { padding: 40px 24px; }
+      .hero-shade { background: linear-gradient(0deg, rgba(10,14,23,0.9) 0%, rgba(10,14,23,0.55) 60%, rgba(10,14,23,0.3) 100%); }
+      .spot-inner { grid-template-columns: 1fr; }
+      .spot-text { padding: 40px 24px 8px; }
+      .spot-features { grid-template-columns: 1fr; }
+      .spot-visual { min-height: 360px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .spot-card, .scroll-cue::after { animation: none; }
+      html { scroll-behavior: auto; }
     }
   </style>
 </head>
@@ -192,6 +279,7 @@
       <a href="#" class="logo">&lt;leo<span>.dev</span> /&gt;</a>
       <div class="nav-links">
         <a href="#about" data-i18n="nav.about">Sobre</a>
+        <a href="#bastiaos">BastiaOS</a>
         <a href="#projects" data-i18n="nav.projects">Projetos</a>
         <a href="#stack" data-i18n="nav.stack">Stack</a>
         <a href="#contact" data-i18n="nav.contact">Contato</a>
@@ -201,7 +289,11 @@
   </nav>
 
   <header class="hero">
+    <canvas id="hero3d" aria-hidden="true"></canvas>
+    <div class="hero-shade"></div>
     <div class="container">
+      <div class="hero-content">
+      <a href="#bastiaos" class="hero-pill"><b data-i18n="hero.pill.tag">NOVO</b><span data-i18n="hero.pill">BastiaOS 0.1 “Muralha” em desenvolvimento →</span></a>
       <p class="hero-tag" data-i18n="hero.tag">// desenvolvedor de software</p>
       <h1 data-i18n-html="hero.title">Olá, eu sou <span class="grad">Léo Matheus</span></h1>
       <p class="hero-sub" data-i18n="hero.sub">
@@ -211,7 +303,9 @@
         <a href="#projects" class="btn btn-primary" data-i18n="hero.cta1">Ver projetos</a>
         <a href="https://github.com/LeooMatheuss" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
       </div>
+      </div>
     </div>
+    <a href="#about" class="scroll-cue" aria-label="Scroll"></a>
   </header>
 
   <section id="about">
@@ -235,11 +329,71 @@
     </div>
   </section>
 
+  <section id="bastiaos">
+    <div class="container reveal">
+      <p class="section-label" data-i18n="spot.label">Projeto principal</p>
+      <h2 class="section-title" data-i18n="spot.title">BastiaOS em destaque</h2>
+      <div class="spot-card">
+        <span class="featured-badge" data-i18n="featured">DESTAQUE</span>
+        <div class="spot-inner">
+          <div class="spot-text">
+            <div class="spot-logo">Bastia<span>OS</span></div>
+            <p class="spot-version">v0.1 “Muralha” · pre-alpha · x86_64</p>
+            <p class="spot-tagline" data-i18n="spot.tagline">Seu sistema. Sua fortaleza.</p>
+            <p class="spot-desc" data-i18n="spot.desc">Distribuição Linux imutável, segura por padrão e totalmente reproduzível, construída do zero com Buildroot. O núcleo é somente leitura, verificado a cada boot e reconstruído bit a bit a partir do código-fonte.</p>
+            <ul class="spot-features">
+              <li><i><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></i><span data-i18n="spot.f1">Núcleo imutável</span></li>
+              <li><i><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/><path d="M3 21v-5h5"/></svg></i><span data-i18n="spot.f2">Updates atômicos A/B</span></li>
+              <li><i><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></i><span data-i18n="spot.f3">Boot verificado (UKI, dm-verity)</span></li>
+              <li><i><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 22V12"/><path d="M21 7l-9 5-9-5"/></svg></i><span data-i18n="spot.f4">Builds reproduzíveis</span></li>
+            </ul>
+            <div class="tags"><span class="tag">Buildroot</span><span class="tag">Linux Kernel</span><span class="tag">systemd</span><span class="tag">Wayland</span><span class="tag">Shell</span></div>
+            <div class="spot-btns">
+              <a href="https://leoomatheuss.github.io/BastiaOS-Site/" target="_blank" rel="noopener" class="btn btn-primary" data-i18n="spot.cta1">Ver site oficial ↗</a>
+              <a href="https://github.com/LeooMatheuss/bastiaos" target="_blank" rel="noopener" class="btn btn-ghost" data-i18n="spot.cta2">Código-fonte ↗</a>
+            </div>
+          </div>
+          <div class="spot-visual">
+            <canvas id="bastia3d" aria-label="BastiaOS layered architecture 3D"></canvas>
+            <span class="spot-hint" data-i18n="spot.hint">// arraste para girar</span>
+            <div class="spot-fallback">Applications · Flatpak
+Desktop · Wayland
+System Services · systemd
+Root FS · read-only A/B
+Linux Kernel · signed UKI
+Toolchain · Buildroot</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="projects">
     <div class="container reveal">
       <p class="section-label" data-i18n="projects.label">Portfólio</p>
       <h2 class="section-title" data-i18n="projects.title">Projetos em destaque</h2>
       <div class="projects-grid">
+        <div class="project-card featured">
+          <span class="featured-badge" data-i18n="featured">DESTAQUE</span>
+          <div class="project-head">
+            <span class="project-name">BastiaOS</span>
+            <span>
+              <a href="https://leoomatheuss.github.io/BastiaOS-Site/" target="_blank" rel="noopener" class="project-site">site</a>
+              <a href="https://github.com/LeooMatheuss/bastiaos" target="_blank" rel="noopener" class="project-link">↗</a>
+            </span>
+          </div>
+          <p class="project-desc" data-i18n="p1.desc">Distribuição Linux leve, modular e reproduzível, imutável e segura por padrão, construída do zero.</p>
+          <div class="tags"><span class="tag">Buildroot</span><span class="tag">Linux</span><span class="tag">systemd</span><span class="tag">Shell</span></div>
+        </div>
+        <div class="project-card featured">
+          <span class="featured-badge" data-i18n="featured">DESTAQUE</span>
+          <div class="project-head">
+            <span class="project-name">cnj-publications-intelligence</span>
+            <a href="https://github.com/LeooMatheuss/cnj-publications-intelligence" target="_blank" rel="noopener" class="project-link">↗</a>
+          </div>
+          <p class="project-desc" data-i18n="p0.desc">Motor de dados jurídicos que coleta, normaliza e consulta publicações do CNJ/DJEN via API oficial: módulo embutível, gateway REST autenticado e app SaaS.</p>
+          <div class="tags"><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">Express</span><span class="tag">Docker</span></div>
+        </div>
         <div class="project-card">
           <div class="project-head">
             <span class="project-name">MediaGrabber</span>
@@ -255,23 +409,6 @@
           </div>
           <p class="project-desc" data-i18n="p8.desc">Transcrição, tradução e legendagem automática de vídeos com IA, 100% local, com editor visual para revisão.</p>
           <div class="tags"><span class="tag">TypeScript</span><span class="tag">React 19</span><span class="tag">Python</span><span class="tag">AI</span></div>
-        </div>
-        <div class="project-card featured">
-          <span class="featured-badge" data-i18n="featured">DESTAQUE</span>
-          <div class="project-head">
-            <span class="project-name">cnj-publications-intelligence</span>
-            <a href="https://github.com/LeooMatheuss/cnj-publications-intelligence" target="_blank" rel="noopener" class="project-link">↗</a>
-          </div>
-          <p class="project-desc" data-i18n="p0.desc">Motor de dados jurídicos que coleta, normaliza e consulta publicações do CNJ/DJEN via API oficial: módulo embutível, gateway REST autenticado e app SaaS.</p>
-          <div class="tags"><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">Express</span><span class="tag">Docker</span></div>
-        </div>
-        <div class="project-card">
-          <div class="project-head">
-            <span class="project-name">bastiaos</span>
-            <a href="https://github.com/LeooMatheuss/bastiaos" target="_blank" rel="noopener" class="project-link">↗</a>
-          </div>
-          <p class="project-desc" data-i18n="p1.desc">Distribuição Linux leve, modular e reproduzível, imutável e segura por padrão, construída do zero.</p>
-          <div class="tags"><span class="tag">Shell</span><span class="tag">Linux</span></div>
         </div>
         <div class="project-card">
           <div class="project-head">
@@ -377,6 +514,12 @@
         'info.role': 'Função', 'info.loc': 'Local', 'info.focus': 'Foco', 'info.study': 'Estudando', 'info.repos': 'Repos públicos',
         'projects.label': 'Portfólio', 'projects.title': 'Projetos em destaque',
         'featured': 'DESTAQUE',
+        'hero.pill.tag': 'NOVO', 'hero.pill': 'BastiaOS 0.1 “Muralha” em desenvolvimento →',
+        'spot.label': 'Projeto principal', 'spot.title': 'BastiaOS em destaque',
+        'spot.tagline': 'Seu sistema. Sua fortaleza.',
+        'spot.desc': 'Distribuição Linux imutável, segura por padrão e totalmente reproduzível, construída do zero com Buildroot. O núcleo é somente leitura, verificado a cada boot e reconstruído bit a bit a partir do código-fonte.',
+        'spot.f1': 'Núcleo imutável', 'spot.f2': 'Updates atômicos A/B', 'spot.f3': 'Boot verificado (UKI, dm-verity)', 'spot.f4': 'Builds reproduzíveis',
+        'spot.cta1': 'Ver site oficial ↗', 'spot.cta2': 'Código-fonte ↗', 'spot.hint': '// arraste para girar',
         'p0.desc': 'Motor de dados jurídicos que coleta, normaliza e consulta publicações do CNJ/DJEN via API oficial: módulo embutível, gateway REST autenticado e app SaaS.',
         'p1.desc': 'Distribuição Linux leve, modular e reproduzível, imutável e segura por padrão, construída do zero.',
         'p2.desc': 'Plataforma open-source de análise de documentos: leitura, extração, sumarização e insights inteligentes de PDFs.',
@@ -404,6 +547,12 @@
         'info.role': 'Role', 'info.loc': 'Location', 'info.focus': 'Focus', 'info.study': 'Studying', 'info.repos': 'Public repos',
         'projects.label': 'Portfolio', 'projects.title': 'Featured projects',
         'featured': 'FEATURED',
+        'hero.pill.tag': 'NEW', 'hero.pill': 'BastiaOS 0.1 “Muralha” in development →',
+        'spot.label': 'Flagship project', 'spot.title': 'Spotlight: BastiaOS',
+        'spot.tagline': 'Your system. Your fortress.',
+        'spot.desc': 'An immutable, secure-by-default and fully reproducible Linux distribution, built from scratch with Buildroot. The core is read-only, verified at every boot and rebuilt bit-for-bit from source.',
+        'spot.f1': 'Immutable core', 'spot.f2': 'Atomic A/B updates', 'spot.f3': 'Verified boot (UKI, dm-verity)', 'spot.f4': 'Reproducible builds',
+        'spot.cta1': 'Official website ↗', 'spot.cta2': 'Source code ↗', 'spot.hint': '// drag to rotate',
         'p0.desc': 'Legal data engine that collects, normalizes and serves judicial publications from Brazil\'s CNJ/DJEN via the official API: embeddable module, authenticated REST gateway and SaaS app.',
         'p1.desc': 'Lightweight, modular and reproducible Linux distribution, immutable and secure by default, built from scratch.',
         'p2.desc': 'Open-source document analytics platform: reading, extracting, summarizing and providing intelligent insights from PDFs.',
@@ -450,6 +599,381 @@
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    if (matchMedia('(hover: hover)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('pointermove', e => {
+          const r = card.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+          card.classList.add('tilting');
+          card.style.transform = `rotateX(${(0.5 - y) * 12}deg) rotateY(${(x - 0.5) * 12}deg) translateZ(10px)`;
+          card.style.setProperty('--gx', `${x * 100}%`);
+          card.style.setProperty('--gy', `${y * 100}%`);
+        });
+        card.addEventListener('pointerleave', () => {
+          card.classList.remove('tilting');
+          card.style.transform = '';
+        });
+      });
+    }
   </script>
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+  </script>
+  <script>
+    setTimeout(() => { if (!window.__three3d) document.documentElement.classList.add('no-webgl'); }, 5000);
+  </script>
+  <script type="module">
+    import * as THREE from 'three';
+
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const scenes = [];
+
+    function makeRenderer(canvas) {
+      try {
+        const r = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+        r.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        r.setClearColor(0x000000, 0);
+        return r;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function dotTexture() {
+      const c = document.createElement('canvas');
+      c.width = c.height = 64;
+      const g = c.getContext('2d');
+      const grd = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+      grd.addColorStop(0, 'rgba(255,255,255,1)');
+      grd.addColorStop(0.25, 'rgba(255,255,255,0.8)');
+      grd.addColorStop(1, 'rgba(255,255,255,0)');
+      g.fillStyle = grd;
+      g.fillRect(0, 0, 64, 64);
+      return new THREE.CanvasTexture(c);
+    }
+    const DOT = dotTexture();
+    const PURPLE = new THREE.Color('#8b5cf6'), CYAN = new THREE.Color('#38bdf8');
+
+    function register(canvas, renderer, scene, camera, update, onResize) {
+      const s = { canvas, renderer, scene, camera, update, onResize, active: true };
+      const resize = () => {
+        const w = canvas.clientWidth, h = canvas.clientHeight;
+        if (!w || !h) return;
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        onResize && onResize(w, h);
+      };
+      new ResizeObserver(resize).observe(canvas);
+      resize();
+      new IntersectionObserver(([e]) => { s.active = e.isIntersecting; }).observe(canvas);
+      scenes.push(s);
+    }
+
+    const NOISE = `
+      vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}
+      vec4 mod289(vec4 x){return x-floor(x*(1.0/289.0))*289.0;}
+      vec4 permute(vec4 x){return mod289(((x*34.0)+1.0)*x);}
+      vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-0.85373472095314*r;}
+      float snoise(vec3 v){
+        const vec2 C=vec2(1.0/6.0,1.0/3.0); const vec4 D=vec4(0.0,0.5,1.0,2.0);
+        vec3 i=floor(v+dot(v,C.yyy)); vec3 x0=v-i+dot(i,C.xxx);
+        vec3 g=step(x0.yzx,x0.xyz); vec3 l=1.0-g; vec3 i1=min(g.xyz,l.zxy); vec3 i2=max(g.xyz,l.zxy);
+        vec3 x1=x0-i1+C.xxx; vec3 x2=x0-i2+C.yyy; vec3 x3=x0-D.yyy;
+        i=mod289(i);
+        vec4 p=permute(permute(permute(i.z+vec4(0.0,i1.z,i2.z,1.0))+i.y+vec4(0.0,i1.y,i2.y,1.0))+i.x+vec4(0.0,i1.x,i2.x,1.0));
+        float n_=0.142857142857; vec3 ns=n_*D.wyz-D.xzx;
+        vec4 j=p-49.0*floor(p*ns.z*ns.z); vec4 x_=floor(j*ns.z); vec4 y_=floor(j-7.0*x_);
+        vec4 x=x_*ns.x+ns.yyyy; vec4 y=y_*ns.x+ns.yyyy; vec4 h=1.0-abs(x)-abs(y);
+        vec4 b0=vec4(x.xy,y.xy); vec4 b1=vec4(x.zw,y.zw);
+        vec4 s0=floor(b0)*2.0+1.0; vec4 s1=floor(b1)*2.0+1.0; vec4 sh=-step(h,vec4(0.0));
+        vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy; vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;
+        vec3 p0=vec3(a0.xy,h.x); vec3 p1=vec3(a0.zw,h.y); vec3 p2=vec3(a1.xy,h.z); vec3 p3=vec3(a1.zw,h.w);
+        vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));
+        p0*=norm.x; p1*=norm.y; p2*=norm.z; p3*=norm.w;
+        vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0); m=m*m;
+        return 42.0*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));
+      }`;
+
+    /* ---------------- Hero: energy core ---------------- */
+    function initHero() {
+      const canvas = document.getElementById('hero3d');
+      const renderer = makeRenderer(canvas);
+      if (!renderer) return false;
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+      camera.position.set(0, 0, 9);
+
+      const core = new THREE.Group();
+      scene.add(core);
+
+      const uniforms = { uTime: { value: 0 }, uAmp: { value: 0.32 }, uA: { value: PURPLE }, uB: { value: CYAN }, uAlpha: { value: 0.95 } };
+      const vert = NOISE + `
+        uniform float uTime; uniform float uAmp;
+        varying vec3 vN; varying vec3 vV; varying float vNoise;
+        void main(){
+          float n = snoise(normal * 1.3 + vec3(uTime * 0.3));
+          vNoise = n;
+          vec3 pos = position + normal * n * uAmp;
+          vec4 mv = modelViewMatrix * vec4(pos, 1.0);
+          vV = normalize(-mv.xyz);
+          vN = normalize(normalMatrix * normal);
+          gl_Position = projectionMatrix * mv;
+        }`;
+      const frag = `
+        uniform vec3 uA; uniform vec3 uB; uniform float uAlpha;
+        varying vec3 vN; varying vec3 vV; varying float vNoise;
+        void main(){
+          float f = pow(1.0 - max(dot(vN, vV), 0.0), 2.2);
+          vec3 col = mix(uA, uB, smoothstep(-0.6, 0.6, vNoise));
+          col = col * 0.18 + col * f * 1.8 + vec3(f * f * 0.5);
+          gl_FragColor = vec4(col, uAlpha);
+        }`;
+      const blobGeo = new THREE.IcosahedronGeometry(1.5, 64);
+      const blob = new THREE.Mesh(blobGeo, new THREE.ShaderMaterial({ uniforms, vertexShader: vert, fragmentShader: frag, transparent: true }));
+      core.add(blob);
+      const wireUniforms = { ...uniforms, uAlpha: { value: 0.18 } };
+      const blobWire = new THREE.Mesh(new THREE.IcosahedronGeometry(1.52, 20), new THREE.ShaderMaterial({
+        uniforms: wireUniforms, vertexShader: vert, fragmentShader: frag, transparent: true, wireframe: true, blending: THREE.AdditiveBlending, depthWrite: false
+      }));
+      core.add(blobWire);
+
+      const shellGeo = new THREE.IcosahedronGeometry(2.4, 1);
+      const shell = new THREE.LineSegments(new THREE.EdgesGeometry(shellGeo), new THREE.LineBasicMaterial({ color: CYAN, transparent: true, opacity: 0.35 }));
+      const nodes = new THREE.Points(shellGeo, new THREE.PointsMaterial({ size: 0.16, map: DOT, color: 0xc4b5fd, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+      const shellGroup = new THREE.Group();
+      shellGroup.add(shell, nodes);
+      core.add(shellGroup);
+
+      const rings = [];
+      [[3.1, 1.2, 0.3, CYAN], [3.6, -0.5, 1.1, PURPLE]].forEach(([r, rx, rz, c], i) => {
+        const g = new THREE.Group();
+        g.rotation.set(rx, 0, rz);
+        g.add(new THREE.Mesh(new THREE.TorusGeometry(r, 0.008, 8, 256), new THREE.MeshBasicMaterial({ color: c, transparent: true, opacity: 0.45 })));
+        const sat = new THREE.Mesh(new THREE.SphereGeometry(0.07, 16, 16), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+        const glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: DOT, color: c, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false }));
+        glow.scale.setScalar(0.7);
+        sat.add(glow);
+        g.add(sat);
+        core.add(g);
+        rings.push({ g, sat, r, speed: i ? -0.35 : 0.5 });
+      });
+
+      const N = 2200, pos = new Float32Array(N * 3), col = new Float32Array(N * 3);
+      for (let i = 0; i < N; i++) {
+        const rad = 5 + Math.random() * 16, th = Math.random() * Math.PI * 2, ph = Math.acos(2 * Math.random() - 1);
+        pos.set([rad * Math.sin(ph) * Math.cos(th), rad * Math.sin(ph) * Math.sin(th), rad * Math.cos(ph) - 4], i * 3);
+        const c = PURPLE.clone().lerp(CYAN, Math.random());
+        col.set([c.r, c.g, c.b], i * 3);
+      }
+      const starGeo = new THREE.BufferGeometry();
+      starGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      starGeo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+      const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ size: 0.09, map: DOT, vertexColors: true, transparent: true, opacity: 0.9, depthWrite: false, blending: THREE.AdditiveBlending }));
+      scene.add(stars);
+
+      const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
+      addEventListener('pointermove', e => {
+        mouse.tx = e.clientX / innerWidth - 0.5;
+        mouse.ty = e.clientY / innerHeight - 0.5;
+      });
+
+      let baseX = 0, baseY = 0, baseScale = 1;
+      register(canvas, renderer, scene, camera, (t, dt) => {
+        uniforms.uTime.value = t;
+        mouse.x += (mouse.tx - mouse.x) * 0.05;
+        mouse.y += (mouse.ty - mouse.y) * 0.05;
+        const scroll = Math.min(scrollY / innerHeight, 1.5);
+        core.position.set(baseX + mouse.x * 0.6, baseY - mouse.y * 0.4 + scroll * 1.5, 0);
+        core.scale.setScalar(baseScale * (1 + scroll * 0.25));
+        blob.rotation.y = blobWire.rotation.y = t * 0.15 + scroll;
+        shellGroup.rotation.set(t * 0.12 + mouse.y * 0.8, t * 0.18 + mouse.x * 0.8 + scroll * 2, 0);
+        rings.forEach(r => {
+          const a = t * r.speed;
+          r.sat.position.set(Math.cos(a) * r.r, Math.sin(a) * r.r, 0);
+          r.g.rotation.y += dt * 0.05;
+        });
+        stars.rotation.y = t * 0.02 + mouse.x * 0.15;
+        stars.rotation.x = mouse.y * 0.1;
+        camera.position.x = mouse.x * 0.8;
+        camera.position.y = -mouse.y * 0.5;
+        camera.lookAt(0, 0, 0);
+      }, (w, h) => {
+        const wide = w / h > 1.1;
+        baseX = wide ? Math.min(3.6, 2.15 * (w / h)) : 0;
+        baseY = wide ? 0 : 1.6;
+        baseScale = wide ? (w > 1200 ? 0.9 : 0.75) : 0.8;
+      });
+      return true;
+    }
+
+    /* ---------------- BastiaOS: exploded layer stack ---------------- */
+    async function initBastia() {
+      const canvas = document.getElementById('bastia3d');
+      const renderer = makeRenderer(canvas);
+      if (!renderer) return false;
+      try { await document.fonts.load('600 32px "JetBrains Mono"'); } catch (e) {}
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
+      camera.position.set(6.2, 3.6, 7.2);
+      camera.lookAt(0, 0.2, 0);
+
+      scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+      const l1 = new THREE.PointLight(0x8b5cf6, 40, 30); l1.position.set(-4, 5, 3); scene.add(l1);
+      const l2 = new THREE.PointLight(0x38bdf8, 40, 30); l2.position.set(4, -2, 4); scene.add(l2);
+
+      const stack = new THREE.Group();
+      scene.add(stack);
+
+      const layers = [
+        ['Toolchain', 'Buildroot · glibc'],
+        ['Kernel', 'signed UKI · GRUB2'],
+        ['Root FS', 'read-only · A/B slots'],
+        ['Services', 'systemd · updates'],
+        ['Desktop', 'Wayland · Mesa'],
+        ['Apps', 'Flatpak sandbox'],
+      ];
+
+      function label(title, sub, color) {
+        const c = document.createElement('canvas');
+        c.width = 640; c.height = 140;
+        const g = c.getContext('2d');
+        g.font = '400 34px "JetBrains Mono", monospace';
+        const bw = Math.max(g.measureText(sub).width, title.length * 31) + 36;
+        g.fillStyle = 'rgba(10, 14, 23, 0.72)';
+        g.beginPath(); g.roundRect(0, 4, Math.min(bw, 640), 132, 18); g.fill();
+        g.font = '600 50px "JetBrains Mono", monospace';
+        g.fillStyle = '#e5e9f0';
+        g.fillText(title, 18, 58);
+        g.font = '400 34px "JetBrains Mono", monospace';
+        g.fillStyle = color;
+        g.fillText(sub, 18, 112);
+        const tex = new THREE.CanvasTexture(c);
+        tex.colorSpace = THREE.SRGBColorSpace;
+        tex.anisotropy = 4;
+        const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false }));
+        sp.scale.set(2.3, 0.5, 1);
+        sp.center.set(0, 0.5);
+        return sp;
+      }
+
+      const plateGeo = new THREE.BoxGeometry(3.2, 0.12, 2.2);
+      const edgeGeo = new THREE.EdgesGeometry(plateGeo);
+      const plates = layers.map(([title, sub], i) => {
+        const c = PURPLE.clone().lerp(CYAN, i / (layers.length - 1));
+        const g = new THREE.Group();
+        const isCore = title === 'Root FS';
+        g.add(new THREE.Mesh(plateGeo, new THREE.MeshStandardMaterial({
+          color: c, emissive: c, emissiveIntensity: isCore ? 0.55 : 0.25, metalness: 0.4, roughness: 0.25,
+          transparent: true, opacity: isCore ? 0.55 : 0.3, depthWrite: false
+        })));
+        g.add(new THREE.LineSegments(edgeGeo, new THREE.LineBasicMaterial({ color: c.clone().offsetHSL(0, 0, 0.15), transparent: true, opacity: 0.95 })));
+        const lb = label(title, sub, '#' + c.getHexString());
+        lb.position.set(1.95, 0, 1.15);
+        g.add(lb);
+        stack.add(g);
+        return g;
+      });
+
+      const lock = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.OctahedronGeometry(0.35, 0)), new THREE.LineBasicMaterial({ color: 0xffffff }));
+      const lockGlow = new THREE.Sprite(new THREE.SpriteMaterial({ map: DOT, color: CYAN, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false }));
+      lockGlow.scale.setScalar(1.6);
+      lock.add(lockGlow);
+      stack.add(lock);
+
+      const scan = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 2.6), new THREE.MeshBasicMaterial({
+        color: CYAN, transparent: true, opacity: 0.12, side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false
+      }));
+      scan.rotation.x = -Math.PI / 2;
+      const scanEdge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(3.6, 2.6)), new THREE.LineBasicMaterial({ color: CYAN, transparent: true, opacity: 0.9 }));
+      scan.add(scanEdge);
+      stack.add(scan);
+
+      const P = 260, ppos = new Float32Array(P * 3), seeds = [];
+      for (let i = 0; i < P; i++) {
+        const a = Math.random() * Math.PI * 2, r = 2.2 + Math.random() * 1.4;
+        seeds.push({ a, r, y: Math.random(), s: 0.15 + Math.random() * 0.35 });
+      }
+      const pGeo = new THREE.BufferGeometry();
+      pGeo.setAttribute('position', new THREE.BufferAttribute(ppos, 3));
+      const flow = new THREE.Points(pGeo, new THREE.PointsMaterial({ size: 0.08, map: DOT, color: 0xa5b4fc, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+      stack.add(flow);
+
+      let hover = 0, hoverT = 0, rotY = -0.5, rotX = 0, tRotY = -0.5, tRotX = 0, drag = null, lastInput = -10;
+      const vis = canvas.parentElement;
+      vis.addEventListener('pointerenter', () => { if (!reduced) hoverT = 1; });
+      vis.addEventListener('pointerleave', () => { hoverT = 0; drag = null; });
+      canvas.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY }; });
+      addEventListener('pointerup', () => { drag = null; });
+      canvas.addEventListener('pointermove', e => {
+        if (!drag) return;
+        tRotY += (e.clientX - drag.x) * 0.01;
+        tRotX = Math.max(-0.4, Math.min(0.5, tRotX + (e.clientY - drag.y) * 0.005));
+        drag = { x: e.clientX, y: e.clientY };
+        lastInput = performance.now() / 1000;
+      });
+
+      let compact = false;
+      register(canvas, renderer, scene, camera, (t, dt) => {
+        hover += (hoverT - hover) * 0.06;
+        if (!drag && performance.now() / 1000 - lastInput > 2) tRotY += dt * 0.25;
+        rotY += (tRotY - rotY) * 0.08;
+        rotX += (tRotX - rotX) * 0.08;
+        stack.rotation.set(rotX, rotY, 0);
+
+        const gap = 0.56 + hover * 0.3 + Math.sin(t * 1.2) * 0.04;
+        const h = gap * (plates.length - 1);
+        plates.forEach((p, i) => {
+          p.position.y = i * gap - h / 2 + Math.sin(t * 1.5 + i * 0.6) * 0.03;
+          p.rotation.y = Math.sin(t * 0.6 + i * 0.5) * 0.04 * (1 + hover * 2);
+        });
+        lock.position.y = h / 2 + 0.75 + Math.sin(t * 2) * 0.06;
+        lock.rotation.y = t * 1.2;
+        lockGlow.material.opacity = 0.5 + Math.sin(t * 3) * 0.25;
+
+        const k = (t * 0.28) % 1;
+        scan.position.y = -h / 2 - 0.2 + k * (h + 0.5);
+        scan.material.opacity = 0.14 * Math.sin(k * Math.PI);
+        scanEdge.material.opacity = 0.9 * Math.sin(k * Math.PI);
+
+        const arr = pGeo.attributes.position.array;
+        seeds.forEach((s, i) => {
+          s.y = (s.y + dt * s.s * 0.25) % 1;
+          const a = s.a + t * 0.1;
+          arr[i * 3] = Math.cos(a) * s.r;
+          arr[i * 3 + 1] = -h / 2 - 0.6 + s.y * (h + 1.6);
+          arr[i * 3 + 2] = Math.sin(a) * s.r;
+        });
+        pGeo.attributes.position.needsUpdate = true;
+        camera.position.z = compact ? 9.2 : 7.2;
+        camera.lookAt(0, 0.2, 0);
+      }, (w, h) => { compact = w / h < 1; });
+      return true;
+    }
+
+    const okHero = initHero();
+    const okBastia = await initBastia();
+    if (!okHero && !okBastia) {
+      document.documentElement.classList.add('no-webgl');
+    } else {
+      window.__three3d = true;
+      const clock = new THREE.Clock();
+      let t = 0;
+      const loop = () => {
+        const dt = Math.min(clock.getDelta(), 0.05);
+        if (!reduced) t += dt;
+        scenes.forEach(s => {
+          if (!s.active) return;
+          s.update(t, reduced ? 0 : dt);
+          s.renderer.render(s.scene, s.camera);
+        });
+        requestAnimationFrame(loop);
+      };
+      loop();
+    }
+  </script>
+
 </body>
 </html>
