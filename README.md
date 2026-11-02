@@ -7,11 +7,11 @@
 Back-end · Sistemas Linux · Automação · AI Product Building
 
 [![Site](https://img.shields.io/badge/site-leoomatheuss.github.io-8b5cf6?style=flat-square&logo=githubpages&logoColor=white)](https://leoomatheuss.github.io/)
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](#-stack)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](#-stack)
-[![JavaScript](https://img.shields.io/badge/JavaScript-ES_Modules-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](#-stack)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](#stack)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](#stack)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES_Modules-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](#stack)
 [![Three.js](https://img.shields.io/badge/Three.js-r160-000000?style=flat-square&logo=threedotjs&logoColor=white)](https://threejs.org/)
-[![i18n](https://img.shields.io/badge/i18n-PT%20%7C%20EN-38bdf8?style=flat-square)](#-internacionalização)
+[![i18n](https://img.shields.io/badge/i18n-PT%20%7C%20EN-38bdf8?style=flat-square)](#internacionalização)
 
 **[Acessar o site →](https://leoomatheuss.github.io/)**
 
